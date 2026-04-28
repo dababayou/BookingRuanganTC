@@ -5,6 +5,10 @@ import android.widget.NumberPicker
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -30,8 +34,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.example.bookingruangantc.ui.theme.BookingRuanganTCTheme
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Date
 import java.util.Locale
+import java.util.TimeZone
 
 data class Room(
     val id: Int,
@@ -66,28 +72,37 @@ class MainActivity : ComponentActivity() {
                 var selectedRoom by remember { mutableStateOf<Room?>(null) }
 
                 Scaffold(
-                    modifier = Modifier.fillMaxSize()
+                    modifier = Modifier.fillMaxSize(),
+                    containerColor = MaterialTheme.colorScheme.background
                 ) { innerPadding ->
                     Box(
                         modifier = Modifier
                             .padding(innerPadding)
                             .fillMaxSize()
-                            .background(Color(0xFFF5F7FB))
+                            .background(MaterialTheme.colorScheme.background)
                     ) {
-                        if (selectedRoom == null) {
-                            RoomListScreen(
-                                rooms = dummyRooms,
-                                onRoomClick = { room ->
-                                    selectedRoom = room
-                                }
-                            )
-                        } else {
-                            BookingFormScreen(
-                                room = selectedRoom!!,
-                                onBack = {
-                                    selectedRoom = null
-                                }
-                            )
+                        AnimatedContent(
+                            targetState = selectedRoom,
+                            transitionSpec = {
+                                fadeIn() togetherWith fadeOut()
+                            },
+                            label = "screen_transition"
+                        ) { targetRoom ->
+                            if (targetRoom == null) {
+                                RoomListScreen(
+                                    rooms = dummyRooms,
+                                    onRoomClick = { room ->
+                                        selectedRoom = room
+                                    }
+                                )
+                            } else {
+                                BookingFormScreen(
+                                    room = targetRoom,
+                                    onBack = {
+                                        selectedRoom = null
+                                    }
+                                )
+                            }
                         }
                     }
                 }
@@ -135,8 +150,8 @@ fun HeaderSection() {
                 .background(
                     Brush.horizontalGradient(
                         listOf(
-                            Color(0xFF1565C0),
-                            Color(0xFF42A5F5)
+                            MaterialTheme.colorScheme.primary,
+                            MaterialTheme.colorScheme.secondary
                         )
                     )
                 )
@@ -144,7 +159,7 @@ fun HeaderSection() {
         ) {
             Column {
                 Text(
-                    text = "Booking Ruangan TC",
+                    text = "TCRoom - Booking Ruangan TC",
                     style = MaterialTheme.typography.headlineMedium,
                     fontWeight = FontWeight.Bold,
                     color = Color.White
@@ -167,7 +182,7 @@ fun HeaderSection() {
         text = "Daftar Ruangan",
         style = MaterialTheme.typography.titleLarge,
         fontWeight = FontWeight.Bold,
-        color = Color(0xFF1E293B)
+        color = MaterialTheme.colorScheme.onBackground
     )
 }
 
@@ -182,7 +197,7 @@ fun RoomCard(
             .clickable { onClick() },
         shape = RoundedCornerShape(20.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 5.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White)
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
     ) {
         Column(
             modifier = Modifier.padding(18.dp)
@@ -192,7 +207,7 @@ fun RoomCard(
             ) {
                 Surface(
                     shape = RoundedCornerShape(16.dp),
-                    color = Color(0xFFE3F2FD),
+                    color = MaterialTheme.colorScheme.primaryContainer,
                     modifier = Modifier.size(52.dp)
                 ) {
                     Box(
@@ -201,7 +216,7 @@ fun RoomCard(
                         Icon(
                             imageVector = Icons.Default.MeetingRoom,
                             contentDescription = "Room Icon",
-                            tint = Color(0xFF1565C0)
+                            tint = MaterialTheme.colorScheme.primary
                         )
                     }
                 }
@@ -215,13 +230,13 @@ fun RoomCard(
                         text = room.name,
                         style = MaterialTheme.typography.titleLarge,
                         fontWeight = FontWeight.Bold,
-                        color = Color(0xFF0F172A)
+                        color = MaterialTheme.colorScheme.onSurface
                     )
 
                     Text(
                         text = room.description,
                         style = MaterialTheme.typography.bodySmall,
-                        color = Color(0xFF64748B)
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
             }
@@ -244,13 +259,13 @@ fun RoomCard(
 
             Surface(
                 shape = RoundedCornerShape(12.dp),
-                color = Color(0xFFF1F5F9)
+                color = MaterialTheme.colorScheme.secondaryContainer
             ) {
                 Text(
                     text = "Fasilitas: ${room.facilities}",
                     modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
                     style = MaterialTheme.typography.bodySmall,
-                    color = Color(0xFF334155)
+                    color = MaterialTheme.colorScheme.onSecondaryContainer
                 )
             }
 
@@ -278,7 +293,7 @@ fun InfoRow(
         Icon(
             imageVector = icon,
             contentDescription = null,
-            tint = Color(0xFF1565C0),
+            tint = MaterialTheme.colorScheme.primary,
             modifier = Modifier.size(18.dp)
         )
 
@@ -287,7 +302,7 @@ fun InfoRow(
         Text(
             text = text,
             style = MaterialTheme.typography.bodyMedium,
-            color = Color(0xFF475569)
+            color = MaterialTheme.colorScheme.onSurfaceVariant
         )
     }
 }
@@ -339,14 +354,16 @@ fun BookingFormScreen(
                     IconButton(onClick = onBack) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
-                            contentDescription = "Kembali"
+                            contentDescription = "Kembali",
+                            tint = MaterialTheme.colorScheme.onBackground
                         )
                     }
 
                     Text(
                         text = "Form Pemesanan",
                         style = MaterialTheme.typography.headlineSmall,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onBackground
                     )
                 }
             }
@@ -360,7 +377,7 @@ fun BookingFormScreen(
                     text = "Data Peminjam",
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold,
-                    color = Color(0xFF1E293B)
+                    color = MaterialTheme.colorScheme.onBackground
                 )
             }
 
@@ -372,7 +389,11 @@ fun BookingFormScreen(
                     placeholder = { Text("Masukkan nama lengkap") },
                     modifier = Modifier.fillMaxWidth(),
                     singleLine = true,
-                    shape = RoundedCornerShape(14.dp)
+                    shape = RoundedCornerShape(14.dp),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedTextColor = MaterialTheme.colorScheme.onBackground,
+                        unfocusedTextColor = MaterialTheme.colorScheme.onBackground
+                    )
                 )
             }
 
@@ -384,7 +405,11 @@ fun BookingFormScreen(
                     placeholder = { Text("Contoh: 502523xxxx") },
                     modifier = Modifier.fillMaxWidth(),
                     singleLine = true,
-                    shape = RoundedCornerShape(14.dp)
+                    shape = RoundedCornerShape(14.dp),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedTextColor = MaterialTheme.colorScheme.onBackground,
+                        unfocusedTextColor = MaterialTheme.colorScheme.onBackground
+                    )
                 )
             }
 
@@ -397,7 +422,11 @@ fun BookingFormScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(120.dp),
-                    shape = RoundedCornerShape(14.dp)
+                    shape = RoundedCornerShape(14.dp),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedTextColor = MaterialTheme.colorScheme.onBackground,
+                        unfocusedTextColor = MaterialTheme.colorScheme.onBackground
+                    )
                 )
             }
 
@@ -406,7 +435,7 @@ fun BookingFormScreen(
                     text = "Jadwal Booking",
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold,
-                    color = Color(0xFF1E293B)
+                    color = MaterialTheme.colorScheme.onBackground
                 )
             }
 
@@ -430,10 +459,10 @@ fun BookingFormScreen(
                         )
                     },
                     colors = OutlinedTextFieldDefaults.colors(
-                        disabledTextColor = Color(0xFF0F172A),
-                        disabledBorderColor = Color(0xFFCBD5E1),
-                        disabledLabelColor = Color(0xFF64748B),
-                        disabledTrailingIconColor = Color(0xFF1565C0)
+                        disabledTextColor = MaterialTheme.colorScheme.onBackground,
+                        disabledBorderColor = MaterialTheme.colorScheme.outline,
+                        disabledLabelColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                        disabledTrailingIconColor = MaterialTheme.colorScheme.primary
                     )
                 )
             }
@@ -452,7 +481,7 @@ fun BookingFormScreen(
                     Text(
                         text = "Lengkapi nama, NRP, keperluan, tanggal, dan waktu terlebih dahulu.",
                         style = MaterialTheme.typography.bodySmall,
-                        color = Color(0xFFD32F2F)
+                        color = MaterialTheme.colorScheme.error
                     )
                 }
             }
@@ -520,15 +549,15 @@ fun TimeWheelInput(
             text = "Waktu Booking",
             style = MaterialTheme.typography.bodyMedium,
             fontWeight = FontWeight.Medium,
-            color = Color(0xFF475569)
+            color = MaterialTheme.colorScheme.onSurfaceVariant
         )
 
         Spacer(modifier = Modifier.height(12.dp))
 
         Surface(
             shape = RoundedCornerShape(14.dp),
-            color = Color.White,
-            border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFFCBD5E1)),
+            color = MaterialTheme.colorScheme.surface,
+            border = androidx.compose.foundation.BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
             modifier = Modifier.fillMaxWidth()
         ) {
             Row(
@@ -558,7 +587,7 @@ fun TimeWheelInput(
                     text = ":",
                     style = MaterialTheme.typography.headlineMedium,
                     fontWeight = FontWeight.Bold,
-                    color = Color(0xFF0F172A),
+                    color = MaterialTheme.colorScheme.onSurface,
                     modifier = Modifier.padding(horizontal = 16.dp)
                 )
 
@@ -584,14 +613,14 @@ fun TimeWheelInput(
             Spacer(modifier = Modifier.height(12.dp))
             Surface(
                 shape = RoundedCornerShape(10.dp),
-                color = Color(0xFFE3F2FD),
+                color = MaterialTheme.colorScheme.primaryContainer,
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(
                     text = "Waktu dipilih: $selectedTime",
                     modifier = Modifier.padding(horizontal = 12.dp, vertical = 12.dp),
                     style = MaterialTheme.typography.bodySmall,
-                    color = Color(0xFF0D47A1),
+                    color = MaterialTheme.colorScheme.onPrimaryContainer,
                     fontWeight = FontWeight.SemiBold,
                     textAlign = TextAlign.Center
                 )
@@ -605,7 +634,7 @@ fun SelectedRoomCard(room: Room) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(20.dp),
-        colors = CardDefaults.cardColors(containerColor = Color(0xFFE3F2FD))
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer)
     ) {
         Column(
             modifier = Modifier.padding(18.dp)
@@ -614,7 +643,7 @@ fun SelectedRoomCard(room: Room) {
                 text = room.name,
                 style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.Bold,
-                color = Color(0xFF0D47A1)
+                color = MaterialTheme.colorScheme.onPrimaryContainer
             )
 
             Spacer(modifier = Modifier.height(8.dp))
@@ -636,7 +665,7 @@ fun SelectedRoomCard(room: Room) {
             Text(
                 text = room.description,
                 style = MaterialTheme.typography.bodyMedium,
-                color = Color(0xFF334155)
+                color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.8f)
             )
         }
     }
@@ -648,7 +677,18 @@ fun DatePickerModal(
     onDateSelected: (String) -> Unit,
     onDismiss: () -> Unit
 ) {
-    val datePickerState = rememberDatePickerState()
+    val datePickerState = rememberDatePickerState(
+        selectableDates = object : SelectableDates {
+            override fun isSelectableDate(utcTimeMillis: Long): Boolean {
+                val calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
+                calendar.set(Calendar.HOUR_OF_DAY, 0)
+                calendar.set(Calendar.MINUTE, 0)
+                calendar.set(Calendar.SECOND, 0)
+                calendar.set(Calendar.MILLISECOND, 0)
+                return utcTimeMillis >= calendar.timeInMillis
+            }
+        }
+    )
 
     DatePickerDialog(
         onDismissRequest = onDismiss,
@@ -701,7 +741,7 @@ fun ConfirmationScreen(
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(24.dp),
             elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
-            colors = CardDefaults.cardColors(containerColor = Color.White)
+            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
         ) {
             Column(
                 modifier = Modifier.padding(24.dp),
@@ -720,7 +760,7 @@ fun ConfirmationScreen(
                     text = "Booking Berhasil!",
                     style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.Bold,
-                    color = Color(0xFF1B5E20)
+                    color = Color(0xFF2E7D32)
                 )
 
                 Spacer(modifier = Modifier.height(8.dp))
@@ -728,7 +768,7 @@ fun ConfirmationScreen(
                 Text(
                     text = "Pemesanan ruangan berhasil dibuat.",
                     style = MaterialTheme.typography.bodyMedium,
-                    color = Color(0xFF64748B)
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
 
                 Spacer(modifier = Modifier.height(24.dp))
@@ -768,14 +808,14 @@ fun BookingDetailItem(
         Text(
             text = label,
             style = MaterialTheme.typography.bodySmall,
-            color = Color(0xFF64748B)
+            color = MaterialTheme.colorScheme.onSurfaceVariant
         )
 
         Text(
             text = value,
             style = MaterialTheme.typography.bodyMedium,
             fontWeight = FontWeight.SemiBold,
-            color = Color(0xFF0F172A)
+            color = MaterialTheme.colorScheme.onSurface
         )
     }
 }
