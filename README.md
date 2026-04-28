@@ -13,8 +13,8 @@ Aplikasi ini menyediakan antarmuka yang intuitif untuk mengelola peminjaman fasi
 *   **UI Modern:** Menggunakan Material Design 3 dengan tema warna biru yang profesional dan bersih.
 
 ## 🖼️ Infografis Aplikasi
-> ![Thumbnail Aplikasi](https://via.placeholder.com/800x400?text=Placeholder+Infografis+TCRoom)
-> *Keterangan: Ganti link di atas dengan path gambar infografis atau screenshot aplikasi Anda di folder assets.*
+<img width="387" height="866" alt="image" src="https://github.com/user-attachments/assets/92ddc0f9-6396-4410-bc37-3daa8a13c4f4" /> <img width="387" height="866" alt="image" src="https://github.com/user-attachments/assets/06e6c3a1-1721-4ac7-9ac1-f5c6b2b7d3aa" /> <img width="387" height="866" alt="image" src="https://github.com/user-attachments/assets/25d304e8-16dc-44c0-9faa-2898585cc796" /> <img width="387" height="866" alt="image" src="https://github.com/user-attachments/assets/91088220-10f9-44f8-aa52-79cb536cd121" />
+<img width="388" height="858" alt="Screenshot 2026-04-28 170625" src="https://github.com/user-attachments/assets/e1cbcabb-5ff2-4b4a-b614-c7b51e9c46c6" /> <img width="377" height="852" alt="Screenshot 2026-04-28 170720" src="https://github.com/user-attachments/assets/bdde381f-20f4-4e67-a64a-4fd8becc465b" /> <img width="412" height="844" alt="Screenshot 2026-04-28 170653" src="https://github.com/user-attachments/assets/c4a2affe-32d7-43d0-8f9c-9137b252514d" /> <img width="389" height="850" alt="Screenshot 2026-04-28 170814" src="https://github.com/user-attachments/assets/fef86105-8c08-4443-afe8-c8f32a0af160" />
 
 ## 🚀 Cara Mengerjakan & Menjalankan
 
