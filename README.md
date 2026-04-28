@@ -1,6 +1,6 @@
 # TCRoom - Booking Ruangan TC
 
-Aplikasi Android modern berbasis **Jetpack Compose** untuk mempermudah proses pemesanan ruangan di Departemen Teknik (TC). Aplikasi ini dirancang untuk membantu mahasiswa maupun dosen dalam mengecek ketersediaan fasilitas dan melakukan reservasi secara digital.
+Aplikasi Android modern berbasis **Jetpack Compose** untuk mempermudah proses pemesanan ruangan di Departemen Teknik Informatika (TC). Aplikasi ini dirancang untuk membantu mahasiswa maupun dosen dalam mengecek ketersediaan fasilitas dan melakukan reservasi secara digital.
 
 ## 📄 Deskripsi & Fitur
 Aplikasi ini menyediakan antarmuka yang intuitif untuk mengelola peminjaman fasilitas akademik. 
