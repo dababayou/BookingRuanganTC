@@ -1,7 +1,0 @@
-com.example.bookingruangantc.app-pngs-0 /Users/mbud/Documents/Android_Studio/BookingRuanganTC/app/build/generated/res/pngs/debug
-com.example.bookingruangantc.app-updated_navigation_xml-1 /Users/mbud/Documents/Android_Studio/BookingRuanganTC/app/build/generated/updated_navigation_xml/debug
-com.example.bookingruangantc.app-packageDebugResources-2 /Users/mbud/Documents/Android_Studio/BookingRuanganTC/app/build/intermediates/incremental/debug/packageDebugResources/merged.dir
-com.example.bookingruangantc.app-packageDebugResources-3 /Users/mbud/Documents/Android_Studio/BookingRuanganTC/app/build/intermediates/incremental/debug/packageDebugResources/stripped.dir
-com.example.bookingruangantc.app-debug-4 /Users/mbud/Documents/Android_Studio/BookingRuanganTC/app/build/intermediates/merged_res/debug/mergeDebugResources
-com.example.bookingruangantc.app-debug-5 /Users/mbud/Documents/Android_Studio/BookingRuanganTC/app/src/debug/res
-com.example.bookingruangantc.app-main-6 /Users/mbud/Documents/Android_Studio/BookingRuanganTC/app/src/main/res
