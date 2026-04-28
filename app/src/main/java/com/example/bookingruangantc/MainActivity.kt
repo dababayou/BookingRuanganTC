@@ -43,17 +43,17 @@ data class Room(
 )
 
 val dummyRooms = listOf(
-    Room(1, "Ruang 101", 30, "Lantai 1 sebelah utara", "Ruang kelas teori TC.", "Proyektor+komputer, kursi+meja"),
-    Room(2, "Ruang 102", 30, "Lantai 1 sebelah utara", "Ruang kelas teori TC.", "Proyektor+komputer, kursi+meja"),
-    Room(3, "Ruang 103", 30, "Lantai 1 sebelah utara", "Ruang kelas teori TC.", "Proyektor+komputer, kursi+meja"),
-    Room(4, "Ruang 104", 30, "Lantai 1 sebelah utara", "Ruang kelas teori TC.", "Proyektor+komputer, kursi+meja"),
-    Room(5, "Ruang 105", 100, "Lantai 1 sebelah utara", "Ruang kelas besar/seminar.", "Proyektor+komputer, kursi+meja, speaker, mic"),
-    Room(6, "Ruang 106", 30, "Lantai 1 sebelah timur", "Ruang kelas teori TC.", "Proyektor+komputer, kursi+meja"),
-    Room(7, "Ruang 107", 100, "Lantai 1 sebelah timur", "Ruang kelas besar dengan fasilitas modern.", "2 smarttv+komputer, kursi dan meja, speaker, mic"),
-    Room(8, "Ruang 108", 30, "Lantai 1 sebelah timur", "Ruang kelas teori TC.", "Proyektor+komputer, kursi dan meja"),
-    Room(9, "Lab Pemrograman (LP) 1", 100, "Lantai 3 sebelah utara", "Laboratorium komputer utama.", "Proyektor+komputer di dipan, komputer setiap kursi, kursi dan meja, speaker+mic"),
-    Room(10, "Lab Pemrograman (LP) 2", 100, "Lantai 3 sebelah selatan", "Laboratorium komputer utama.", "Proyektor+komputer di dipan, komputer setiap kursi, kursi dan meja, speaker+mic"),
-    Room(11, "Aula Handayani", 150, "Lantai 2 sebelah timur", "Aula utama.", "Layar utama dan TV tambahan, kursi dan meja, speaker+mic")
+    Room(1, "Ruang 101", 30, "Lantai 1 sebelah utara", "Ruang kelas.", "Proyektor + komputer, kursi + meja"),
+    Room(2, "Ruang 102", 30, "Lantai 1 sebelah utara", "Ruang kelas.", "Proyektor + komputer, kursi + meja"),
+    Room(3, "Ruang 103", 30, "Lantai 1 sebelah utara", "Ruang kelas.", "Proyektor + komputer, kursi + meja"),
+    Room(4, "Ruang 104", 30, "Lantai 1 sebelah utara", "Ruang kelas.", "Proyektor + komputer, kursi + meja"),
+    Room(5, "Ruang 105", 100, "Lantai 1 sebelah utara", "Ruang kelas besar/seminar.", "Proyektor + komputer, kursi+meja, speaker, mic"),
+    Room(6, "Ruang 106", 30, "Lantai 1 sebelah timur", "Ruang kelas.", "Proyektor + komputer, kursi + meja"),
+    Room(7, "Ruang 107", 100, "Lantai 1 sebelah timur", "Ruang kelas besar.", "2 smart tv + komputer, kursi dan meja, speaker, mic"),
+    Room(8, "Ruang 108", 30, "Lantai 1 sebelah timur", "Ruang kelas.", "Proyektor + komputer, kursi dan meja"),
+    Room(9, "Lab Pemrograman (LP) 1", 100, "Lantai 3 sebelah utara", "Laboratorium komputer.", "Proyektor + komputer di dipan, komputer setiap kursi, kursi dan meja, speaker+mic"),
+    Room(10, "Lab Pemrograman (LP) 2", 100, "Lantai 3 sebelah selatan", "Laboratorium komputer.", "Proyektor+komputer di dipan, komputer setiap kursi, kursi dan meja, speaker+mic"),
+    Room(11, "Aula Handayani", 150, "Lantai 2 sebelah timur", "Aula utama.", "Layar utama dan TV tambahan, kursi dan meja, speaker, mic")
 )
 
 class MainActivity : ComponentActivity() {
