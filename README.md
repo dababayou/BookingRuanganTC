@@ -3,9 +3,9 @@
 Aplikasi Android modern berbasis **Jetpack Compose** untuk mempermudah proses pemesanan ruangan di Departemen Teknik Informatika (TC). Aplikasi ini dirancang untuk membantu mahasiswa maupun dosen dalam mengecek ketersediaan fasilitas dan melakukan reservasi secara digital.
 
 ## 📲 Download & Instalasi
-| Version | Link |
+| Aplication | Link |
 |---|---|
-| **TCRoom - Latest Release** | [📥 Download APK](https://github.com/Gembut/BookingRuanganTC/raw/main/TCRoom.apk) |
+| **TCRoom** | [📥 Download APK](https://github.com/Gembut/BookingRuanganTC/raw/main/TCRoom.apk) |
 
 > **Catatan:** Untuk menginstal APK, pastikan Anda telah mengizinkan "Install from Unknown Sources" di pengaturan HP Anda.
 
